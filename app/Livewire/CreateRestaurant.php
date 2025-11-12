@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\City;
 use App\Models\Cuisine;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\UploadedFile;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
@@ -24,6 +25,7 @@ class CreateRestaurant extends Component
     #[Validate('required|string|max:255')]
     public string $address = '';
 
+    /** @var array<int, string> */
     #[Validate('required|array|min:1')]
     public array $selectedCusines = [];
 
@@ -33,29 +35,30 @@ class CreateRestaurant extends Component
     #[Validate('required|date')]
     public Carbon $openedDate;
 
+    /**
+     * @return Collection<int, Cuisine>
+     */
     #[Computed]
-    public function cuisines()
+    public function cuisines(): Collection
     {
         return Cuisine::all();
     }
 
+    /**
+     * @return Collection<int, City>
+     */
     #[Computed]
-    public function cities()
+    public function cities(): Collection
     {
         return City::all();
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate();
 
         // Logic to save the restaurant would go here
 
         session()->flash('message', 'Restaurant created successfully.');
-    }
-
-    public function render()
-    {
-        return view('livewire.create-restaurant');
     }
 }
