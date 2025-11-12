@@ -44,11 +44,21 @@ class Restaurant extends Model
         'opened_date',
     ];
 
+    /**
+     *  Get the city where this restaurant is located.
+     *
+     * @return BelongsTo<City, $this>
+     */
     public function city(): BelongsTo
     {
         return $this->belongsTo(City::class);
     }
 
+    /**
+     * The cuisines that this restaurant offers.
+     *
+     * @return BelongsToMany<Cuisine, $this>
+     */
     public function cuisines(): BelongsToMany
     {
         return $this->belongsToMany(Cuisine::class);

@@ -40,6 +40,11 @@ class Cuisine extends Model
         'name',
     ];
 
+    /**
+     * The restaurants that have this cuisine.
+     *
+     * @return BelongsToMany<Restaurant, $this>
+     */
     public function restaurants(): BelongsToMany
     {
         return $this->belongsToMany(Restaurant::class);

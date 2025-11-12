@@ -1,0 +1,23 @@
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - app/
+
+    # Level 9 is the highest level
+    level: 7
+
+    #    editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+
+    universalObjectCratesClasses:
+        - Illuminate\Support\Fluent
+
+    ignoreErrors:
+        - '#Match arm comparison .*#'
+
+#    checkMissingIterableValueType: false
+#    treatPhpDocTypesAsCertain: false
+    checkOctaneCompatibility: true
+    noEnvCallsOutsideOfConfig: true

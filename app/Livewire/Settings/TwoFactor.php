@@ -154,6 +154,8 @@ class TwoFactor extends Component
 
     /**
      * Get the current modal configuration state.
+     *
+     * @return array<string, string>
      */
     public function getModalConfigProperty(): array
     {
