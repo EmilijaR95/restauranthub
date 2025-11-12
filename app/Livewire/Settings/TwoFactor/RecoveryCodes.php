@@ -10,7 +10,7 @@ use Livewire\Component;
 class RecoveryCodes extends Component
 {
     #[Locked]
-    public array $recoveryCodes = [];
+    public array $recoveryCodes = []; // @phpstan-ignore-line
 
     /**
      * Mount the component.

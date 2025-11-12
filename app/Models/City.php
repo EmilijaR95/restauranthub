@@ -40,6 +40,11 @@ class City extends Model
         'name',
     ];
 
+    /**
+     * Get all restaurants in this city.
+     *
+     * @return HasMany<Restaurant, $this>
+     */
     public function restaurants(): HasMany
     {
         return $this->hasMany(Restaurant::class);
