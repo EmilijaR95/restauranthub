@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\City;
 use App\Models\Cuisine;
+use App\Models\Restaurant;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\UploadedFile;
@@ -11,6 +12,7 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Masmerise\Toaster\Toaster;
 
 class CreateRestaurant extends Component
 {
@@ -19,7 +21,7 @@ class CreateRestaurant extends Component
     #[Validate('required|string|max:255')]
     public string $name = '';
 
-    #[Validate('required|image|max:1024')]
+    #[Validate('required|image|max:5120')]
     public ?UploadedFile $picture = null;
 
     #[Validate('required|string|max:255')]
@@ -27,7 +29,7 @@ class CreateRestaurant extends Component
 
     /** @var array<int, string> */
     #[Validate('required|array|min:1')]
-    public array $selectedCusines = [];
+    public array $selectedCuisines = [];
 
     #[Validate('required|string|max:255')]
     public string $city = '';
@@ -57,8 +59,18 @@ class CreateRestaurant extends Component
     {
         $this->validate();
 
-        // Logic to save the restaurant would go here
+        $restaurant = Restaurant::create([
+            'name' => $this->name,
+            'picture' => $this->picture->store('restaurants', 'public'),
+            'address' => $this->address,
+            'city_uuid' => $this->city,
+            'opened_date' => $this->openedDate->toDateString(),
+        ]);
 
-        session()->flash('message', 'Restaurant created successfully.');
+        $restaurant->cuisines()->sync($this->selectedCuisines);
+
+        $this->reset();
+
+        Toaster::success(__('Restaurant created successfully!'));
     }
 }

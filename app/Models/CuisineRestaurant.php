@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Cuisine extends Model
+class CuisineRestaurant extends Pivot
 {
     use HasUuids;
 
@@ -37,18 +36,7 @@ class Cuisine extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'cuisine_uuid',
+        'restaurant_uuid',
     ];
-
-    /**
-     * The restaurants that have this cuisine.
-     *
-     * @return BelongsToMany<Restaurant, $this, CuisineRestaurant>
-     */
-    public function restaurants(): BelongsToMany
-    {
-        return $this->belongsToMany(Restaurant::class)
-            ->using(CuisineRestaurant::class)
-            ->withTimestamps();
-    }
 }

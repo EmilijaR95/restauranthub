@@ -20,7 +20,7 @@
         <flux:textarea rows="2" label="{{ __('Address') }}" wire:model="address" />
 
         <!-- Restaurant Cuisines -->
-        <flux:checkbox.group wire:model="selectedCusines" label="{{ __('Cuisines') }}">
+        <flux:checkbox.group wire:model="selectedCuisines" label="{{ __('Cuisines') }}">
             <div class="flex flex-wrap gap-4 *:gap-x-2">
                 @foreach ($this->cuisines as $cuisine)
                     <flux:checkbox value="{{ $cuisine->uuid }}" label="{{ $cuisine->name }}" />
@@ -36,7 +36,7 @@
         </flux:select>
 
         <!-- Opened Date -->
-        <flux:input type="date" label="{{ __('Opened Date') }}" />
+        <flux:input type="date" wire:model="openedDate" label="{{ __('Opened Date') }}" />
 
         <!-- Save Button -->
         <flux:button variant="primary" color="emerald" wire:click="save" class="w-max">{{ __('Save') }}
