@@ -42,5 +42,4 @@
         <flux:button variant="primary" color="emerald" wire:click="save" class="w-max">{{ __('Save') }}
         </flux:button>
     </div>
-
 </section>
