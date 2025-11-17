@@ -55,7 +55,7 @@ class CreateRestaurant extends Component
         return City::all();
     }
 
-    public function save(): void
+    public function store(): void
     {
         $this->validate();
 

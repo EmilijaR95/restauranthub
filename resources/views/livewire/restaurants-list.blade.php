@@ -31,7 +31,7 @@
             </thead>
             <tbody class="bg-white dark:bg-white/10">
                 @foreach ($this->restaurants as $restaurant)
-                    <tr>
+                    <tr wire:key="{{ $restaurant->uuid }}">
                         <td class="border-b border-zinc-200 dark:border-zinc-400 p-4 text-slate-500 dark:text-white">
                             {{ $restaurant->uuid }}</td>
                         <td
@@ -47,7 +47,7 @@
                         <td class="border-b border-zinc-200 dark:border-zinc-400 p-4 text-slate-500 dark:text-white">
                             <div class="flex items-center gap-2">
                                 <flux:button variant="primary" color="orange" size="sm"
-                                    :href="route('restaurants.create')" wire:navigate>
+                                    :href="route('restaurants.edit', $restaurant->uuid)" wire:navigate>
                                     {{ __('Edit') }}
                                 </flux:button>
                                 <flux:button variant="primary" color="red" size="sm">

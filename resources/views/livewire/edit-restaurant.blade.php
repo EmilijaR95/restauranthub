@@ -1,7 +1,11 @@
 <section class="w-full">
     <div class="relative mb-6 w-full">
-        <flux:heading size="xl" level="1">{{ __('Create Restaurant') }}</flux:heading>
-        <flux:subheading size="lg" class="mb-6 text-[#00A9E0]">{{ __('Add a new restaurant to your list') }}
+        <flux:heading size="xl" level="1">
+            {{ __('Edit Restaurant:') }} <span
+                class="text-[#FFA500]">{{ ' ' . $this->restaurant->uuid . ' - ' . Str::title($this->restaurant->name) }}</span>
+        </flux:heading>
+        <flux:subheading size="lg" class="mb-6 text-[#00A9E0]">
+            {{ __('Modify this restaurant’s information and update its details.') }}
         </flux:subheading>
         <flux:separator variant="subtle" />
     </div>
@@ -11,8 +15,10 @@
         <flux:input label="{{ __('Name') }}" wire:model="name" />
 
         <!-- Restaurant Picture Upload -->
-        @if ($picture)
-            <img src="{{ $picture->temporaryUrl() }}" class="w-32 h-32 object-cover rounded">
+        @if ($picture instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile)
+            <img src="{{ $picture->temporaryUrl() }}" class="w-32 h-32 object-cover rounded" />
+        @elseif ($picture)
+            <img src="{{ Storage::disk('public')->url($picture) }}" class="w-32 h-32 object-cover rounded" />
         @endif
         <flux:input type="file" label="{{ __('Picture') }}" wire:model="picture" />
 
@@ -39,7 +45,7 @@
         <flux:input type="date" wire:model="openedDate" label="{{ __('Opened Date') }}" />
 
         <!-- Save Button -->
-        <flux:button variant="primary" color="emerald" wire:click="store" class="w-max">{{ __('Save') }}
+        <flux:button variant="primary" color="orange" wire:click="update" class="w-max">{{ __('Edit') }}
         </flux:button>
     </div>
 </section>
