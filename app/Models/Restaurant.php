@@ -41,6 +41,7 @@ class Restaurant extends Model
         'name',
         'picture',
         'address',
+        'city_uuid',
         'opened_date',
     ];
 
@@ -57,10 +58,12 @@ class Restaurant extends Model
     /**
      * The cuisines that this restaurant offers.
      *
-     * @return BelongsToMany<Cuisine, $this>
+     * @return BelongsToMany<Cuisine, $this, CuisineRestaurant>
      */
     public function cuisines(): BelongsToMany
     {
-        return $this->belongsToMany(Cuisine::class);
+        return $this->belongsToMany(Cuisine::class)
+            ->using(CuisineRestaurant::class)
+            ->withTimestamps();
     }
 }

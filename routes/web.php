@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\CreateRestaurant;
+use App\Livewire\EditRestaurant;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -32,4 +34,10 @@ Route::middleware(['auth'])->group(function () {
             ),
         )
         ->name('two-factor.show');
+
+    Route::prefix('restaurants')->name('restaurants.')->group(function () {
+        Route::get('/', \App\Livewire\RestaurantsList::class)->name('list');
+        Route::get('/create', CreateRestaurant::class)->name('create');
+        Route::get('/{restaurant}/edit', EditRestaurant::class)->name('edit');
+    });
 });
