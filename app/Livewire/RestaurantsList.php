@@ -19,6 +19,6 @@ class RestaurantsList extends Component
     #[Computed] #[On(['restaurantDeleted'])]
     public function restaurants(): LengthAwarePaginator
     {
-        return Restaurant::paginate(10);
+        return Restaurant::latest()->paginate(10);
     }
 }

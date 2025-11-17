@@ -39,6 +39,8 @@ class CreateRestaurant extends Component
     {
         $this->form->store();
 
+        $this->redirect(route('restaurants.list'));
+
         Toaster::success(__('Restaurant created successfully!'));
     }
 }
