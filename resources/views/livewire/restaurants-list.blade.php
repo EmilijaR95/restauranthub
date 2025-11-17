@@ -50,9 +50,8 @@
                                     :href="route('restaurants.edit', $restaurant->uuid)" wire:navigate>
                                     {{ __('Edit') }}
                                 </flux:button>
-                                <flux:button variant="primary" color="red" size="sm">
-                                    {{ __('Delete') }}
-                                </flux:button>
+                                <!-- Delete Restaurant Modal -->
+                                <livewire:delete-restaurant :$restaurant :key="$restaurant->uuid" />
                             </div>
                         </td>
                     </tr>
