@@ -2,6 +2,8 @@
 
 use App\Livewire\CreateRestaurant;
 use App\Livewire\EditRestaurant;
+use App\Livewire\HomePage;
+use App\Livewire\RestaurantsList;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -9,9 +11,7 @@ use App\Livewire\Settings\TwoFactor;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', HomePage::class)->name('home');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
@@ -36,7 +36,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('two-factor.show');
 
     Route::prefix('restaurants')->name('restaurants.')->group(function () {
-        Route::get('/', \App\Livewire\RestaurantsList::class)->name('list');
+        Route::get('/', RestaurantsList::class)->name('list');
         Route::get('/create', CreateRestaurant::class)->name('create');
         Route::get('/{restaurant}/edit', EditRestaurant::class)->name('edit');
     });
