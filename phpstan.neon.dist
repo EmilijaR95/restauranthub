@@ -15,7 +15,7 @@ parameters:
         - Illuminate\Support\Fluent
 
     ignoreErrors:
-        - '#Match arm comparison .*#'
+        # - '#Match arm comparison .*#'
 
 #    checkMissingIterableValueType: false
 #    treatPhpDocTypesAsCertain: false

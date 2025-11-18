@@ -51,7 +51,7 @@
                                     {{ __('Edit') }}
                                 </flux:button>
                                 <!-- Delete Restaurant Modal -->
-                                <livewire:delete-restaurant :$restaurant :key="$restaurant->uuid" />
+                                <livewire:restaurants.delete-restaurant :$restaurant :key="$restaurant->uuid" />
                             </div>
                         </td>
                     </tr>

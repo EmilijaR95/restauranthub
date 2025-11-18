@@ -1,27 +1,21 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Restaurants;
 
 use App\Livewire\Forms\RestaurantForm;
 use App\Models\City;
 use App\Models\Cuisine;
-use App\Models\Restaurant;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Masmerise\Toaster\Toaster;
 
-class EditRestaurant extends Component
+class CreateRestaurant extends Component
 {
     use WithFileUploads;
 
     public RestaurantForm $form;
-
-    public function mount(Restaurant $restaurant): void
-    {
-        $this->form->setRestaurant($restaurant);
-    }
 
     /**
      * @return Collection<int, Cuisine>
@@ -43,8 +37,10 @@ class EditRestaurant extends Component
 
     public function save(): void
     {
-        $this->form->update();
+        $this->form->store();
 
-        Toaster::success(__('Restaurant updated successfully!'));
+        $this->redirect(route('restaurants.list'));
+
+        Toaster::success(__('Restaurant created successfully!'));
     }
 }

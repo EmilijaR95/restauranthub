@@ -1,9 +1,9 @@
 <?php
 
-use App\Livewire\CreateRestaurant;
-use App\Livewire\EditRestaurant;
 use App\Livewire\HomePage;
-use App\Livewire\RestaurantsList;
+use App\Livewire\Restaurants\CreateRestaurant;
+use App\Livewire\Restaurants\EditRestaurant;
+use App\Livewire\Restaurants\RestaurantsList;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;

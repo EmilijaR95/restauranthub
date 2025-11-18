@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Restaurants;
 
 use App\Models\Restaurant;
 use Flux\Flux;
